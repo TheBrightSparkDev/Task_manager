@@ -13,12 +13,40 @@
     {% endblock %}
 </head>
 <body>
+    <header>
+        <nav class="nav-extended text-shadow #039be5 light-blue darken-1">
+            <div class="nav-wrapper">
+                <a href="{{ url_for('get_tasks') }}" class="brand-logo">Task manager</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('get_tasks') }}">home</a></li>
+                    <li><a href="#">profile</a></li>
+                    <li><a href="#">new task</a></li>
+                    <li><a href="#">Manage categories</a></li>
+                    <li><a href="#">log out</a></li>
+                    <li><a href="#">log in</a></li>
+                    <li><a href="#">register</a></li>
+                </ul>
+            </div>
+            </nav>
+
+            <ul class="sidenav" id="mobile-demo">
+                <li><h4 class="center-align light-blue-text text-darken-4"></h4>
+                </li>
+                <li><a href="{{ url_for('get_tasks') }}">home</a></li>
+                <li><a href="#">profile</a></li>
+                <li><a href="#">new task</a></li>
+                <li><a href="#">Manage categories</a></li>
+                <li><a href="#">log out</a></li>
+                <li><a href="#">log in</a></li>
+                <li><a href="#">register</a></li>
+    </header>
     {% block content %}
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{url_for('static', filename='js/sscript.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
     {% block scripts %}
     {% endblock %}
 </body>
