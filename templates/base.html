@@ -24,7 +24,7 @@
                     <li><a href="#">new task</a></li>
                     <li><a href="#">Manage categories</a></li>
                     <li><a href="#">log out</a></li>
-                    <li><a href="#">log in</a></li>
+                    <li><a href="{{ url_for('login') }}">log in</a></li>
                     <li><a href="{{ url_for('register') }}">register</a></li>
                 </ul>
             </div>
@@ -38,7 +38,7 @@
                 <li><a href="#">new task</a></li>
                 <li><a href="#">Manage categories</a></li>
                 <li><a href="#">log out</a></li>
-                <li><a href="#">log in</a></li>
+                <li><a href="{{ url_for('login') }}">log in</a></li>
                 <li><a href="{{ url_for('register') }}">register</a></li>
     </header>
     <!-- section for flash messages -->
