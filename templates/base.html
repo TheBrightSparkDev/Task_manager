@@ -22,7 +22,7 @@
                     <li><a href="{{ url_for('get_tasks') }}">home</a></li>
                     {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">profile</a></li>
-                    <li><a href="#">new task</a></li>
+                    <li><a href="{{ url_for('add_task') }}">new task</a></li>
                     <li><a href="#">Manage categories</a></li>
                     <li><a href="{{ url_for('logout') }}">log out</a></li>
                     {% else %}
@@ -39,7 +39,7 @@
                 <li><a href="{{ url_for('get_tasks') }}">home</a></li>
                 {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">profile</a></li>
-                    <li><a href="#">new task</a></li>
+                    <li><a href="{{ url_for('add_task') }}">new task</a></li>
                     <li><a href="#">Manage categories</a></li>
                     <li><a href="{{ url_for('logout') }}">log out</a></li>
                 {% else %}

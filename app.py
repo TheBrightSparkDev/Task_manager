@@ -106,11 +106,19 @@ def profile(username):
 
 @app.route("/logout")
 def logout():
+    """
+    logs the user out
+    """
     flash("you have been logged out")
     # session.clear removes all cookies 
     # session.pop removes the cookie in the ()
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_task")
+def add_task():
+    return render_template("add_task.html")
 
 
 if __name__ == "__main__":
