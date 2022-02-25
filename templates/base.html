@@ -20,12 +20,15 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_tasks') }}">home</a></li>
+                    {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">profile</a></li>
                     <li><a href="#">new task</a></li>
                     <li><a href="#">Manage categories</a></li>
-                    <li><a href="#">log out</a></li>
+                    <li><a href="{{ url_for('logout') }}">log out</a></li>
+                    {% else %}
                     <li><a href="{{ url_for('login') }}">log in</a></li>
                     <li><a href="{{ url_for('register') }}">register</a></li>
+                    {% endif %}
                 </ul>
             </div>
             </nav>
@@ -34,12 +37,15 @@
                 <li><h4 class="center-align light-blue-text text-darken-4"></h4>
                 </li>
                 <li><a href="{{ url_for('get_tasks') }}">home</a></li>
-                <li><a href="{{ url_for('profile', username=session['user']) }}">profile</a></li>
-                <li><a href="#">new task</a></li>
-                <li><a href="#">Manage categories</a></li>
-                <li><a href="#">log out</a></li>
-                <li><a href="{{ url_for('login') }}">log in</a></li>
-                <li><a href="{{ url_for('register') }}">register</a></li>
+                {% if session.user %}
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">profile</a></li>
+                    <li><a href="#">new task</a></li>
+                    <li><a href="#">Manage categories</a></li>
+                    <li><a href="{{ url_for('logout') }}">log out</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">log in</a></li>
+                    <li><a href="{{ url_for('register') }}">register</a></li>
+                {% endif %}
     </header>
     <!-- section for flash messages -->
 
