@@ -170,6 +170,31 @@ def delete_task(task_id):
     flash("task successfully deleted")
     return redirect(url_for("get_tasks"))
 
+
+@app.route("/get_categories")
+def get_categories():
+    """
+    displays and control logic for the delete task page
+    """
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("categories.html", categories=categories)
+
+
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    """
+    displays and control logic for the delete task page
+    """
+    if request.method == "POST":
+        category = {
+            "category_name": request.form.get("category_name")
+        }
+        mongo.db.categories.insert_one(category)
+        flash("new category added")
+        return redirect(url_for("get_categories"))
+    return render_template("add_category.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
