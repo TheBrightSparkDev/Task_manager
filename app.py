@@ -138,7 +138,7 @@ def add_task():
     return render_template("add_task.html", categories=categories)
 
 
-@app.route("/edit_task/<task_id>",methods=["POST","GET"])
+@app.route("/edit_task/<task_id>", methods=["POST", "GET"])
 def edit_task(task_id):
     """
     displays and control logic for the edit task page
@@ -159,6 +159,16 @@ def edit_task(task_id):
     task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_task.html", task=task, categories=categories)
+
+
+@app.route("/delete_task/<task_id>")
+def delete_task(task_id):
+    """
+    displays and control logic for the delete task page
+    """
+    mongo.db.tasks.delete_one({"_id": ObjectId(task_id)})
+    flash("task successfully deleted")
+    return redirect(url_for("get_tasks"))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
