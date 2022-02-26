@@ -183,7 +183,7 @@ def get_categories():
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     """
-    displays and control logic for the delete task page
+    displays and control logic for the add category page
     """
     if request.method == "POST":
         category = {
@@ -193,6 +193,32 @@ def add_category():
         flash("new category added")
         return redirect(url_for("get_categories"))
     return render_template("add_category.html")
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    """
+    displays and control logic for the delete task page
+    """
+    if request.method == "POST":
+        submit = {"$set": {
+            "category_name": request.form.get("category_name")
+        }}
+        mongo.db.categories.update_one({"_id": ObjectId(category_id)}, submit)
+        flash("Category successfully updated")
+        return redirect(url_for("get_categories"))
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template("edit_category.html", category=category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    """
+    displays and control logic for the delete category page
+    """
+    mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
+    flash("Category successfully deleted")
+    return redirect(url_for("get_categories"))
 
 
 if __name__ == "__main__":
